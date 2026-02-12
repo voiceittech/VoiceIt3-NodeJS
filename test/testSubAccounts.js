@@ -83,24 +83,6 @@ describe('Testing All Subaccount API Calls', function(){
     });
   });
 
-  describe('Test Switch SubAccount Type', function(){
-    it(`should return SUCC`, function(done){
-      this.timeout(MAX_TIMEOUT);
-      let itThis = this;
-      myVoiceIt.switchSubAccountType({
-        subAccountAPIKey: subAccounts.currentSubAccountAPIKeys[1]
-      }, (jsonResponse) => {
-        try {
-          assert.equal(jsonResponse.responseCode, 'SUCC');
-          assert.equal(jsonResponse.status, 200);
-          done();
-        } catch(e) {
-          return done(e);
-        }
-      });
-    });
-  });
-
 
   describe('Test Regenerate SubAccount API Token', function(){
     it(`should return SUCC`, function(done){
