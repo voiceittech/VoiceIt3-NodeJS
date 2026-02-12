@@ -123,18 +123,6 @@ function VoiceIt2(apk, tok, baseUrl) {
     });
   };
 
-	this.switchSubAccountType = (options, callback) => {
-    this.axiosInstance.post(`${BASE_URL}/subaccount/${options.subAccountAPIKey}/switchType${this.notificationUrl}`)
-      .then((httpResponse) => {
-        callback(httpResponse.data);
-      }).catch((error) => {
-        if (error.response && error.response.data)
-          callback(error.response.data);
-        else
-          throw error;
-      });
-  };
-
 
   this.regenerateSubAccountAPIToken = (options, callback) => {
     this.axiosInstance.post(`${BASE_URL}/subaccount/${options.subAccountAPIKey}${this.notificationUrl}`)
