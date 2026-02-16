@@ -205,7 +205,9 @@ describe('Testing All Verification API Calls', function() {
             ? testCase.userId
             : verification.currentUserIds[0],
           videoFilePath: testCase.videoFilePath,
-          phrase: testCase.phrase ? testCase.phrase : ''
+          phrase: testCase.phrase ? testCase.phrase : '',
+          requireLiveness: testCase.requireLiveness,
+          livenessThreshold: testCase.livenessThreshold
         }, (jsonResponse) => {
           try {
             utilities.printIfError(testCase.expectedRc, jsonResponse);
@@ -264,7 +266,9 @@ describe('Testing All Verification API Calls', function() {
             : verification.currentUserIds[1],
           videoFilePath: testCase.videoFilePath,
           contentLanguage: testCase.contentLanguage,
-          phrase: testCase.phrase ? testCase.phrase : ''
+          phrase: testCase.phrase ? testCase.phrase : '',
+          requireLiveness: testCase.requireLiveness,
+          livenessThreshold: testCase.livenessThreshold
         }, (jsonResponse) => {
           try {
             utilities.printIfError(testCase.expectedRc, jsonResponse);

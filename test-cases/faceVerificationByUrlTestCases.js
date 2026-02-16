@@ -7,6 +7,12 @@ const faceVerificationByUrlTestCases = [
   expectedSc: 200,
   videoFileURL: config.getURL(config.FACE_VERIFICATION_FILE_B_1),
   expectedMessage:'Successfully verified face for user with userId : usr_([a-z0-9]){32}'
+},
+{
+  expectedRc: responseCode.FAIL,
+  expectedSc: 200,
+  videoFileURL: config.getURL(config.FACE_VERIFICATION_FILE_C_1),
+  expectedMessage:'Failed to verify face for user with userId : usr_([a-z0-9]){32}, low face confidence'
 }
 ];
 module.exports = faceVerificationByUrlTestCases;

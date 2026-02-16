@@ -289,6 +289,18 @@ function VoiceIt3(apk, tok, baseUrl) {
 
   /* Enrollment API Calls */
 
+  this.getAllEnrollmentsForUser = (options, callback) => {
+    this.axiosInstance.get(`${BASE_URL}/enrollments/${options.userId}${this.notificationUrl}`)
+      .then((httpResponse) => {
+        callback(httpResponse.data);
+      }).catch((error) => {
+        if (error.response && error.response.data)
+          callback(error.response.data);
+        else
+          throw error;
+      });
+  };
+
   this.getAllVoiceEnrollments = (options, callback) => {
     this.axiosInstance.get(`${BASE_URL}/enrollments/voice/${options.userId}${this.notificationUrl}`)
       .then((httpResponse) => {
@@ -379,8 +391,16 @@ function VoiceIt3(apk, tok, baseUrl) {
     form.append('userId', options.userId);
     form.append('video', fs.createReadStream(options.videoFilePath));
 
+    const reqHeaders = form.getHeaders();
+    if (options.requireLiveness !== undefined) {
+      reqHeaders['X-Require-Liveness'] = options.requireLiveness.toString();
+    }
+    if (options.livenessThreshold !== undefined) {
+      reqHeaders['X-Liveness-Threshold'] = options.livenessThreshold.toString();
+    }
+
     this.axiosInstance.post(`${BASE_URL}/enrollments/face${this.notificationUrl}`, form, {
-      headers: form.getHeaders(),
+      headers: reqHeaders,
     }).then((httpResponse) => {
       callback(httpResponse.data);
     }).catch((error) => {
@@ -408,6 +428,35 @@ function VoiceIt3(apk, tok, baseUrl) {
     });
   };
 
+  this.createPhotoEnrollment = (options, callback) => {
+    if (!checkFileExists(options.photoFilePath, callback)) {
+      return;
+    }
+
+    const form = new FormData();
+    form.append('userId', options.userId);
+    form.append('photo', fs.createReadStream(options.photoFilePath));
+
+    const reqHeaders = form.getHeaders();
+    if (options.requireLiveness !== undefined) {
+      reqHeaders['X-Require-Liveness'] = options.requireLiveness.toString();
+    }
+    if (options.livenessThreshold !== undefined) {
+      reqHeaders['X-Liveness-Threshold'] = options.livenessThreshold.toString();
+    }
+
+    this.axiosInstance.post(`${BASE_URL}/enrollments/face${this.notificationUrl}`, form, {
+      headers: reqHeaders,
+    }).then((httpResponse) => {
+      callback(httpResponse.data);
+    }).catch((error) => {
+      if (error.response && error.response.data)
+        callback(error.response.data);
+      else
+        throw error;
+    });
+  };
+
   this.createVideoEnrollment = (options, callback) => {
     if (!checkFileExists(options.videoFilePath, callback)) {
       return;
@@ -421,8 +470,16 @@ function VoiceIt3(apk, tok, baseUrl) {
       filename: 'video.mp4',
     });
 
+    const reqHeaders = form.getHeaders();
+    if (options.requireLiveness !== undefined) {
+      reqHeaders['X-Require-Liveness'] = options.requireLiveness.toString();
+    }
+    if (options.livenessThreshold !== undefined) {
+      reqHeaders['X-Liveness-Threshold'] = options.livenessThreshold.toString();
+    }
+
     this.axiosInstance.post(`${BASE_URL}/enrollments/video${this.notificationUrl}`, form, {
-      headers: form.getHeaders(),
+      headers: reqHeaders,
     }).then((httpResponse) => {
       callback(httpResponse.data);
     }).catch((error) => {
@@ -521,8 +578,16 @@ function VoiceIt3(apk, tok, baseUrl) {
       filename: 'video.mp4',
     });
 
+    const reqHeaders = form.getHeaders();
+    if (options.requireLiveness !== undefined) {
+      reqHeaders['X-Require-Liveness'] = options.requireLiveness.toString();
+    }
+    if (options.livenessThreshold !== undefined) {
+      reqHeaders['X-Liveness-Threshold'] = options.livenessThreshold.toString();
+    }
+
     this.axiosInstance.post(`${BASE_URL}/verification/face${this.notificationUrl}`, form, {
-      headers: form.getHeaders(),
+      headers: reqHeaders,
     }).then((httpResponse) => {
       callback(httpResponse.data);
     }).catch((error) => {
@@ -551,6 +616,35 @@ function VoiceIt3(apk, tok, baseUrl) {
     });
   };
 
+  this.photoVerification = (options, callback) => {
+    if (!checkFileExists(options.photoFilePath, callback)) {
+      return;
+    }
+
+    const form = new FormData();
+    form.append('userId', options.userId);
+    form.append('photo', fs.createReadStream(options.photoFilePath));
+
+    const reqHeaders = form.getHeaders();
+    if (options.requireLiveness !== undefined) {
+      reqHeaders['X-Require-Liveness'] = options.requireLiveness.toString();
+    }
+    if (options.livenessThreshold !== undefined) {
+      reqHeaders['X-Liveness-Threshold'] = options.livenessThreshold.toString();
+    }
+
+    this.axiosInstance.post(`${BASE_URL}/verification/face${this.notificationUrl}`, form, {
+      headers: reqHeaders,
+    }).then((httpResponse) => {
+      callback(httpResponse.data);
+    }).catch((error) => {
+      if (error.response && error.response.data)
+        callback(error.response.data);
+      else
+        throw error;
+    });
+  };
+
   this.videoVerification = (options, callback) => {
     if (!checkFileExists(options.videoFilePath, callback)) {
       return;
@@ -560,12 +654,20 @@ function VoiceIt3(apk, tok, baseUrl) {
     form.append('userId', options.userId);
     form.append('contentLanguage', options.contentLanguage);
     form.append('phrase', options.phrase ? options.phrase : '');
-    form.append('userId', options.userId);
     form.append('video', fs.createReadStream(options.videoFilePath), {
       filename: 'video.mp4',
     });
+
+    const reqHeaders = form.getHeaders();
+    if (options.requireLiveness !== undefined) {
+      reqHeaders['X-Require-Liveness'] = options.requireLiveness.toString();
+    }
+    if (options.livenessThreshold !== undefined) {
+      reqHeaders['X-Liveness-Threshold'] = options.livenessThreshold.toString();
+    }
+
     this.axiosInstance.post(`${BASE_URL}/verification/video${this.notificationUrl}`, form, {
-      headers: form.getHeaders(),
+      headers: reqHeaders,
     }).then((httpResponse) => {
       callback(httpResponse.data);
     }).catch((error) => {
@@ -671,6 +773,27 @@ function VoiceIt3(apk, tok, baseUrl) {
     form.append('fileUrl', options.videoFileURL);
 
     this.axiosInstance.post(`${BASE_URL}/identification/face/byUrl${this.notificationUrl}`, form, {
+      headers: form.getHeaders(),
+    }).then((httpResponse) => {
+      callback(httpResponse.data);
+    }).catch((error) => {
+      if (error.response && error.response.data)
+        callback(error.response.data);
+      else
+        throw error;
+    });
+  };
+
+  this.photoIdentification = (options, callback) => {
+    if (!checkFileExists(options.photoFilePath, callback)) {
+      return;
+    }
+
+    const form = new FormData();
+    form.append('groupId', options.groupId);
+    form.append('photo', fs.createReadStream(options.photoFilePath));
+
+    this.axiosInstance.post(`${BASE_URL}/identification/face${this.notificationUrl}`, form, {
       headers: form.getHeaders(),
     }).then((httpResponse) => {
       callback(httpResponse.data);

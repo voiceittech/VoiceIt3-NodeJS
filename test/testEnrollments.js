@@ -194,6 +194,8 @@ describe('Testing All Enrollment API Calls', function(){
             {
               userId : testCase.userId ? testCase.userId : enrollments.currentUserId,
               videoFilePath : testCase.videoFilePath,
+              requireLiveness: testCase.requireLiveness,
+              livenessThreshold: testCase.livenessThreshold
             },(jsonResponse) => {
               utilities.printIfError(testCase.expectedRc, jsonResponse);
               if(jsonResponse.responseCode == responseCode.SUCCESS){
@@ -249,7 +251,9 @@ describe('Testing All Enrollment API Calls', function(){
               userId : testCase.userId ? testCase.userId : enrollments.currentUserId,
               videoFilePath : testCase.videoFilePath,
               contentLanguage : testCase.contentLanguage,
-              phrase: testCase.phrase ? testCase.phrase : ''
+              phrase: testCase.phrase ? testCase.phrase : '',
+              requireLiveness: testCase.requireLiveness,
+              livenessThreshold: testCase.livenessThreshold
             },(jsonResponse) => {
               utilities.printIfError(testCase.expectedRc, jsonResponse);
               if(jsonResponse.responseCode == responseCode.SUCCESS){

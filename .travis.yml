@@ -41,6 +41,30 @@ before_script:
   - wget https://drive.voiceit.io/files/videoEnrollmentD2.mov
   - wget https://drive.voiceit.io/files/videoEnrollmentD3.mov
   - wget https://drive.voiceit.io/files/videoVerificationD1.mov
+  - wget https://drive.voiceit.io/files/faceA1.png
+  - wget https://drive.voiceit.io/files/faceB1.jpg
+  - wget https://drive.voiceit.io/files/faceB2.jpg
+  - wget https://drive.voiceit.io/files/faceB3.jpg
+  - wget https://drive.voiceit.io/files/faceC1.jpg
+  - wget https://drive.voiceit.io/files/fali_photo1.jpg
+  - wget https://drive.voiceit.io/files/fali_photo2.jpg
+  - wget https://drive.voiceit.io/files/fali_video2.mp4
+  - wget https://drive.voiceit.io/files/sttf.wav
+  - wget https://drive.voiceit.io/files/srnr.m4a
+  - wget https://drive.voiceit.io/files/sstl.wav
+  - wget https://drive.voiceit.io/files/sstq.wav
+  - wget https://drive.voiceit.io/files/nehsd.wav
+  - wget https://drive.voiceit.io/files/pdnm.wav
+  - wget https://drive.voiceit.io/files/fnfd.mp4
+  - wget https://drive.voiceit.io/files/ftmf_video.mov
+  - wget https://drive.voiceit.io/files/sttf_video.mov
+  - wget https://drive.voiceit.io/files/pdnm_video.mov
+  - wget https://drive.voiceit.io/files/BFaceCVoice.mp4
+  - wget https://drive.voiceit.io/files/BVoiceCFace.mp4
+  - wget https://drive.voiceit.io/files/fake.wav
+  - wget https://drive.voiceit.io/files/fake.mp4
+  - wget https://drive.voiceit.io/files/fake.jpeg
+  - touch empty.file
   - cd ..
   - npm i
 script:

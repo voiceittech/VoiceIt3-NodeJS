@@ -43,6 +43,37 @@ const TestConfig = {
   FACE_VERIFICATION_FILE_B_1 : 'test-data/faceVerificationB1.mp4',
   FACE_VERIFICATION_FILE_C_1 : 'test-data/faceVerificationC1.mp4',
   ENGLISH_PHRASE : 'Never forget tomorrow is a new day',
+  ENGLISH_PHRASE_FAKE : 'Chariot Progressive, listen. Mandelbrot set is in motion. Echo Choir has been breached',
+  // Photo enrollment files
+  PHOTO_ENROLLMENT_FILE_A_1 : 'test-data/faceA1.png',
+  PHOTO_ENROLLMENT_FILE_B_1 : 'test-data/faceB1.jpg',
+  PHOTO_ENROLLMENT_FILE_B_2 : 'test-data/faceB2.jpg',
+  PHOTO_ENROLLMENT_FILE_B_3 : 'test-data/faceB3.jpg',
+  PHOTO_ENROLLMENT_FILE_C_1 : 'test-data/faceC1.jpg',
+  // Liveness attack files
+  FALI_PHOTO_FILE_1 : 'test-data/fali_photo1.jpg',
+  FALI_PHOTO_FILE_2 : 'test-data/fali_photo2.jpg',
+  FALI_VIDEO_FILE : 'test-data/fali_video2.mp4',
+  // Voice edge case files
+  STTF_FILE : 'test-data/sttf.wav',
+  SRNR_FILE : 'test-data/srnr.m4a',
+  SSTL_FILE : 'test-data/sstl.wav',
+  SSTQ_FILE : 'test-data/sstq.wav',
+  NEHSD_FILE : 'test-data/nehsd.wav',
+  PDNM_FILE : 'test-data/pdnm.wav',
+  // Video edge case files
+  FNFD_FILE : 'test-data/fnfd.mp4',
+  FTMF_VIDEO_FILE : 'test-data/ftmf_video.mov',
+  STTF_VIDEO_FILE : 'test-data/sttf_video.mov',
+  PDNM_VIDEO_FILE : 'test-data/pdnm_video.mov',
+  // Cross-modal test files
+  ARMAAN_FACE_STEPHEN_VOICE : 'test-data/BFaceCVoice.mp4',
+  ARMAAN_VOICE_STEPHEN_FACE : 'test-data/BVoiceCFace.mp4',
+  // Fake/empty files
+  FAKE_FILE : 'test-data/fake.wav',
+  FAKE_VIDEO_FILE : 'test-data/fake.mp4',
+  FAKE_PHOTO_FILE : 'test-data/fake.jpeg',
+  EMPTY_FILE : 'test-data/empty.file',
   getURL:(filePath)=>{
     return `${TestConfig.VOICEIT_DRIVE_URL}${filePath.replace('test-data/', '')}`;
   }
