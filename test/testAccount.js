@@ -27,7 +27,7 @@ describe('Testing Account', function(){
         try {
           assert.equal(jsonResponse.responseCode, responseCode.DEVELOPER_ACCOUNT_IS_DISABLED);
           assert.equal(jsonResponse.status, 401);
-          assert.ok(utilities.compare(jsonResponse.message, 'Your developer account has been disabled. Please contact us at support@voiceit.io with any questions.'));
+          assert.ok(utilities.compare(jsonResponse.message, 'Your developer account has been disabled. Please contact us at support@voiceit.tech with any questions.'));
           done();
         } catch(e) {
           return done(e);

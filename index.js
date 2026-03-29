@@ -392,11 +392,7 @@ function VoiceIt3(apk, tok, baseUrl) {
     form.append('video', fs.createReadStream(options.videoFilePath));
 
     const reqHeaders = form.getHeaders();
-    if (options.requireLiveness !== undefined) {
-      reqHeaders['X-Require-Liveness'] = options.requireLiveness.toString();
     }
-    if (options.livenessThreshold !== undefined) {
-      reqHeaders['X-Liveness-Threshold'] = options.livenessThreshold.toString();
     }
 
     this.axiosInstance.post(`${BASE_URL}/enrollments/face${this.notificationUrl}`, form, {
@@ -438,11 +434,7 @@ function VoiceIt3(apk, tok, baseUrl) {
     form.append('photo', fs.createReadStream(options.photoFilePath));
 
     const reqHeaders = form.getHeaders();
-    if (options.requireLiveness !== undefined) {
-      reqHeaders['X-Require-Liveness'] = options.requireLiveness.toString();
     }
-    if (options.livenessThreshold !== undefined) {
-      reqHeaders['X-Liveness-Threshold'] = options.livenessThreshold.toString();
     }
 
     this.axiosInstance.post(`${BASE_URL}/enrollments/face${this.notificationUrl}`, form, {
@@ -471,11 +463,7 @@ function VoiceIt3(apk, tok, baseUrl) {
     });
 
     const reqHeaders = form.getHeaders();
-    if (options.requireLiveness !== undefined) {
-      reqHeaders['X-Require-Liveness'] = options.requireLiveness.toString();
     }
-    if (options.livenessThreshold !== undefined) {
-      reqHeaders['X-Liveness-Threshold'] = options.livenessThreshold.toString();
     }
 
     this.axiosInstance.post(`${BASE_URL}/enrollments/video${this.notificationUrl}`, form, {
@@ -579,11 +567,7 @@ function VoiceIt3(apk, tok, baseUrl) {
     });
 
     const reqHeaders = form.getHeaders();
-    if (options.requireLiveness !== undefined) {
-      reqHeaders['X-Require-Liveness'] = options.requireLiveness.toString();
     }
-    if (options.livenessThreshold !== undefined) {
-      reqHeaders['X-Liveness-Threshold'] = options.livenessThreshold.toString();
     }
 
     this.axiosInstance.post(`${BASE_URL}/verification/face${this.notificationUrl}`, form, {
@@ -626,11 +610,7 @@ function VoiceIt3(apk, tok, baseUrl) {
     form.append('photo', fs.createReadStream(options.photoFilePath));
 
     const reqHeaders = form.getHeaders();
-    if (options.requireLiveness !== undefined) {
-      reqHeaders['X-Require-Liveness'] = options.requireLiveness.toString();
     }
-    if (options.livenessThreshold !== undefined) {
-      reqHeaders['X-Liveness-Threshold'] = options.livenessThreshold.toString();
     }
 
     this.axiosInstance.post(`${BASE_URL}/verification/face${this.notificationUrl}`, form, {
@@ -659,11 +639,7 @@ function VoiceIt3(apk, tok, baseUrl) {
     });
 
     const reqHeaders = form.getHeaders();
-    if (options.requireLiveness !== undefined) {
-      reqHeaders['X-Require-Liveness'] = options.requireLiveness.toString();
     }
-    if (options.livenessThreshold !== undefined) {
-      reqHeaders['X-Liveness-Threshold'] = options.livenessThreshold.toString();
     }
 
     this.axiosInstance.post(`${BASE_URL}/verification/video${this.notificationUrl}`, form, {
