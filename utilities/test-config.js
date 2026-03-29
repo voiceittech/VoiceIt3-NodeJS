@@ -50,7 +50,6 @@ const TestConfig = {
   PHOTO_ENROLLMENT_FILE_B_2 : 'test-data/faceB2.jpg',
   PHOTO_ENROLLMENT_FILE_B_3 : 'test-data/faceB3.jpg',
   PHOTO_ENROLLMENT_FILE_C_1 : 'test-data/faceC1.jpg',
-  // Liveness attack files
   FALI_PHOTO_FILE_1 : 'test-data/fali_photo1.jpg',
   FALI_PHOTO_FILE_2 : 'test-data/fali_photo2.jpg',
   FALI_VIDEO_FILE : 'test-data/fali_video2.mp4',

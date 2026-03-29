@@ -50,7 +50,6 @@ const ResponseCode = {
     NO_VIDEO_ENROLLMENTS_FOUND : 'NVEN',
     SIGNAL_QUALITY_TOO_LOW : 'SGTL',
     NO_VOICE_DETECTED : 'NVDT',
-    LIVENESS_CHECK_FAILED : 'FALI',
 }
 
 module.exports = ResponseCode;

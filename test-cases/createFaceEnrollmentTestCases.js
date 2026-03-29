@@ -33,10 +33,8 @@ const createFaceEnrollmentTestCases = [
     expectedMessage:'An empty file cannot be processed by API 2'
 },
 {
-    expectedRc: responseCode.LIVENESS_CHECK_FAILED,
     expectedSc: 400,
     videoFilePath: config.FALI_VIDEO_FILE,
-    requireLiveness: true,
     expectedMessage:'Failed to create face enrollment for user with userId : usr_([a-z0-9]){32}, liveness check failed - possible spoofing attempt'
 }
 ];

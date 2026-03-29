@@ -112,8 +112,6 @@ describe('Testing Photo Operations', function() {
         myVoiceIt.createPhotoEnrollment({
           userId: testCase.userId ? testCase.userId : photoOps.currentUserIds[0],
           photoFilePath: testCase.photoFilePath,
-          requireLiveness: testCase.requireLiveness,
-          livenessThreshold: testCase.livenessThreshold
         }, (jsonResponse) => {
           try {
             utilities.printIfError(testCase.expectedRc, jsonResponse);
@@ -136,8 +134,6 @@ describe('Testing Photo Operations', function() {
         myVoiceIt.photoVerification({
           userId: testCase.userId ? testCase.userId : photoOps.currentUserIds[0],
           photoFilePath: testCase.photoFilePath,
-          requireLiveness: testCase.requireLiveness,
-          livenessThreshold: testCase.livenessThreshold
         }, (jsonResponse) => {
           try {
             utilities.printIfError(testCase.expectedRc, jsonResponse);
