@@ -1,6 +1,5 @@
 <img src="https://raw.githubusercontent.com/voiceittech/voiceit3-nodejs/master/nodejs.png" width="100%" style="width:100%" />
 
-# VoiceIt3-NodeJS [![CI](https://github.com/voiceittech/VoiceIt3-NodeJS/actions/workflows/ci.yml/badge.svg)](https://github.com/voiceittech/VoiceIt3-NodeJS/actions/workflows/ci.yml) [![version](https://img.shields.io/npm/v/voiceit3-nodejs)](https://www.npmjs.com/package/voiceit3-nodejs) [![downloads](https://img.shields.io/npm/dm/voiceit3-nodejs)](https://www.npmjs.com/package/voiceit3-nodejs) ![MIT](https://img.shields.io/github/license/mashape/apistatus.svg)
 
 ## NPM installation 
 
@@ -19,7 +18,7 @@ You can visit our [HTTP API 3.0 Documentation](https://api.voiceit.io/?javascrip
 
 ## Support
 
-Contact us with any questions at support@voiceit.io
+Contact us with any questions at support@voiceit.tech
 
 ## License
 
