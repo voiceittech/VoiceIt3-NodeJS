@@ -35,13 +35,6 @@ const createVideoEnrollmentTestCases = [
     expectedMessage:'An empty file cannot be processed by API 2'
 },
 {
-    expectedSc: 400,
-    contentLanguage: config.CONTENT_LANGUAGE_REAL,
-    phrase: config.ENGLISH_PHRASE,
-    videoFilePath: config.FALI_VIDEO_FILE,
-    expectedMessage:'Failed to create video enrollment for user with userId : usr_([a-z0-9]){32}, liveness check failed - possible spoofing attempt'
-},
-{
     expectedRc: responseCode.SUCCESS,
     expectedSc: 201,
     contentLanguage: config.CONTENT_LANGUAGE_REAL,

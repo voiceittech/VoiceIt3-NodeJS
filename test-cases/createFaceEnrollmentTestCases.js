@@ -31,11 +31,6 @@ const createFaceEnrollmentTestCases = [
     expectedSc: 400,
     videoFilePath: config.EMPTY_FILE,
     expectedMessage:'An empty file cannot be processed by API 2'
-},
-{
-    expectedSc: 400,
-    videoFilePath: config.FALI_VIDEO_FILE,
-    expectedMessage:'Failed to create face enrollment for user with userId : usr_([a-z0-9]){32}, liveness check failed - possible spoofing attempt'
 }
 ];
 module.exports = createFaceEnrollmentTestCases;

@@ -259,12 +259,11 @@ function VoiceIt3(apk, tok, baseUrl) {
   };
 
   this.removeUserFromGroup = (options, callback) => {
-    const form = new FormData();
-    form.append('userId', options.userId);
-    form.append('groupId', options.groupId);
-
-    this.axiosInstance.put(`${BASE_URL}/groups/removeUser${this.notificationUrl}`, form, {
-      headers: form.getHeaders(),
+    this.axiosInstance.delete(`${BASE_URL}/groups/removeUser${this.notificationUrl}`, {
+      params: {
+        userId: options.userId,
+        groupId: options.groupId,
+      },
     }).then((httpResponse) => {
       callback(httpResponse.data);
     }).catch((error) => {
