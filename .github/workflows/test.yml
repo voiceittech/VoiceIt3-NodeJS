@@ -1,4 +1,6 @@
 name: API Test
+env:
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
 on: [push, pull_request]
 jobs:
   test:
