@@ -22,7 +22,7 @@ Sign up at [voiceit.io/pricing](https://voiceit.io/pricing) to get your API Key 
 <img src="./Graphics/getcredentials.png" alt="API Key and Token" width="400px" />
 
 ## API calls
-You can visit our [HTTP API 3.0 Documentation](https://api.voiceit.io/?javascript#introduction) for detailed information on each API call.
+You can visit our [HTTP API 3.0 Documentation](https://voiceit.io/documentation) for detailed information on each API call.
 ## Support
 
 If you find this SDK useful, please consider giving it a star on GitHub — it helps others discover the project!
