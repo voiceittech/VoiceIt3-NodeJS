@@ -6,31 +6,15 @@ jobs:
   test:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v6
-      - uses: actions/setup-node@v6
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
         with:
           node-version: '20'
       - run: npm install
       - name: Syntax check
         run: node --check index.js
-      - name: Run API test
+      - name: Run full API test
         env:
           VOICEIT_API_KEY: ${{ secrets.VOICEIT_API_KEY }}
           VOICEIT_API_TOKEN: ${{ secrets.VOICEIT_API_TOKEN }}
-        run: |
-          node -e "
-          const VoiceIt3 = require('./index.js');
-          const vi = new VoiceIt3(process.env.VOICEIT_API_KEY, process.env.VOICEIT_API_TOKEN);
-          let done = 0;
-          function check(name, res) {
-            var r = (typeof res === 'string') ? JSON.parse(res) : res;
-            console.log(name + ': ' + r.responseCode);
-            if (r.responseCode !== 'SUCC') process.exit(1);
-            done++;
-            if (done >= 3) process.exit(0);
-          }
-          vi.createUser(function(res) { check('CreateUser', res); });
-          vi.getAllUsers(function(res) { check('GetAllUsers', res); });
-          vi.getPhrases({contentLanguage:'en-US'}, function(res) { check('GetPhrases', res); });
-          setTimeout(function() { process.exit(1); }, 15000);
-          "
+        run: node test_example.js
