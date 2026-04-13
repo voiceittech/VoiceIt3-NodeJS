@@ -60,7 +60,7 @@ function VoiceIt3(apk, tok, baseUrl) {
   };
 
   this.getPhrases = (options, callback) => {
-    this.axiosInstance.get(`${BASE_URL}/phrases/${options.contentLanguage}${this.notificationUrl}`)
+    this.axiosInstance.get(`${BASE_URL}/phrases/${encodeURIComponent(options.contentLanguage)}${this.notificationUrl}`)
       .then((httpResponse) => {
         callback(httpResponse.data);
       }).catch((error) => {
@@ -125,7 +125,7 @@ function VoiceIt3(apk, tok, baseUrl) {
 
 
   this.regenerateSubAccountAPIToken = (options, callback) => {
-    this.axiosInstance.post(`${BASE_URL}/subaccount/${options.subAccountAPIKey}${this.notificationUrl}`)
+    this.axiosInstance.post(`${BASE_URL}/subaccount/${encodeURIComponent(options.subAccountAPIKey)}${this.notificationUrl}`)
       .then((httpResponse) => {
         callback(httpResponse.data);
       }).catch((error) => {
@@ -139,7 +139,7 @@ function VoiceIt3(apk, tok, baseUrl) {
   //TODO: is it ok to name the property subAccountAPIKey to be consistent with the other wrappers
   // or should it be userId? 
   this.deleteSubAccount = (options, callback) => {
-    this.axiosInstance.delete(`${BASE_URL}/subaccount/${options.subAccountAPIKey}${this.notificationUrl}`)
+    this.axiosInstance.delete(`${BASE_URL}/subaccount/${encodeURIComponent(options.subAccountAPIKey)}${this.notificationUrl}`)
       .then((httpResponse) => {
         callback(httpResponse.data);
       }).catch((error) => {
@@ -152,7 +152,7 @@ function VoiceIt3(apk, tok, baseUrl) {
 
 
   this.checkUserExists = (options, callback) => {
-    this.axiosInstance.get(`${BASE_URL}/users/${options.userId}${this.notificationUrl}`)
+    this.axiosInstance.get(`${BASE_URL}/users/${encodeURIComponent(options.userId)}${this.notificationUrl}`)
       .then((httpResponse) => {
         callback(httpResponse.data);
       }).catch((error) => {
@@ -164,7 +164,7 @@ function VoiceIt3(apk, tok, baseUrl) {
   };
 
   this.deleteUser = (options, callback) => {
-    this.axiosInstance.delete(`${BASE_URL}/users/${options.userId}${this.notificationUrl}`)
+    this.axiosInstance.delete(`${BASE_URL}/users/${encodeURIComponent(options.userId)}${this.notificationUrl}`)
       .then((httpResponse) => {
         callback(httpResponse.data);
       }).catch((error) => {
@@ -176,7 +176,7 @@ function VoiceIt3(apk, tok, baseUrl) {
   };
 
   this.getGroupsForUser = (options, callback) => {
-    this.axiosInstance.get(`${BASE_URL}/users/${options.userId}/groups${this.notificationUrl}`)
+    this.axiosInstance.get(`${BASE_URL}/users/${encodeURIComponent(options.userId)}/groups${this.notificationUrl}`)
       .then((httpResponse) => {
         callback(httpResponse.data);
       }).catch((error) => {
@@ -202,7 +202,7 @@ function VoiceIt3(apk, tok, baseUrl) {
   };
 
   this.getGroup = (options, callback) => {
-    this.axiosInstance.get(`${BASE_URL}/groups/${options.groupId}${this.notificationUrl}`)
+    this.axiosInstance.get(`${BASE_URL}/groups/${encodeURIComponent(options.groupId)}${this.notificationUrl}`)
       .then((httpResponse) => {
         callback(httpResponse.data);
       }).catch((error) => {
@@ -214,7 +214,7 @@ function VoiceIt3(apk, tok, baseUrl) {
   };
 
   this.checkGroupExists = (options, callback) => {
-    this.axiosInstance.get(`${BASE_URL}/groups/${options.groupId}/exists${this.notificationUrl}`)
+    this.axiosInstance.get(`${BASE_URL}/groups/${encodeURIComponent(options.groupId)}/exists${this.notificationUrl}`)
       .then((httpResponse) => {
         callback(httpResponse.data);
       }).catch((error) => {
@@ -275,7 +275,7 @@ function VoiceIt3(apk, tok, baseUrl) {
   };
 
   this.deleteGroup = (options, callback) => {
-    this.axiosInstance.delete(`${BASE_URL}/groups/${options.groupId}${this.notificationUrl}`)
+    this.axiosInstance.delete(`${BASE_URL}/groups/${encodeURIComponent(options.groupId)}${this.notificationUrl}`)
       .then((httpResponse) => {
         callback(httpResponse.data);
       }).catch((error) => {
@@ -289,7 +289,7 @@ function VoiceIt3(apk, tok, baseUrl) {
   /* Enrollment API Calls */
 
   this.getAllEnrollmentsForUser = (options, callback) => {
-    this.axiosInstance.get(`${BASE_URL}/enrollments/${options.userId}${this.notificationUrl}`)
+    this.axiosInstance.get(`${BASE_URL}/enrollments/${encodeURIComponent(options.userId)}${this.notificationUrl}`)
       .then((httpResponse) => {
         callback(httpResponse.data);
       }).catch((error) => {
@@ -301,7 +301,7 @@ function VoiceIt3(apk, tok, baseUrl) {
   };
 
   this.getAllVoiceEnrollments = (options, callback) => {
-    this.axiosInstance.get(`${BASE_URL}/enrollments/voice/${options.userId}${this.notificationUrl}`)
+    this.axiosInstance.get(`${BASE_URL}/enrollments/voice/${encodeURIComponent(options.userId)}${this.notificationUrl}`)
       .then((httpResponse) => {
         callback(httpResponse.data);
       }).catch((error) => {
@@ -313,7 +313,7 @@ function VoiceIt3(apk, tok, baseUrl) {
   };
 
   this.getAllFaceEnrollments = (options, callback) => {
-    this.axiosInstance.get(`${BASE_URL}/enrollments/face/${options.userId}${this.notificationUrl}`)
+    this.axiosInstance.get(`${BASE_URL}/enrollments/face/${encodeURIComponent(options.userId)}${this.notificationUrl}`)
       .then((httpResponse) => {
         callback(httpResponse.data);
       }).catch((error) => {
@@ -325,7 +325,7 @@ function VoiceIt3(apk, tok, baseUrl) {
   };
 
   this.getAllVideoEnrollments = (options, callback) => {
-    this.axiosInstance.get(`${BASE_URL}/enrollments/video/${options.userId}${this.notificationUrl}`)
+    this.axiosInstance.get(`${BASE_URL}/enrollments/video/${encodeURIComponent(options.userId)}${this.notificationUrl}`)
       .then((httpResponse) => {
         callback(httpResponse.data);
       }).catch((error) => {
@@ -491,7 +491,7 @@ function VoiceIt3(apk, tok, baseUrl) {
   };
 
   this.deleteAllEnrollments = (options, callback) => {
-    this.axiosInstance.delete(`${BASE_URL}/enrollments/${options.userId}/all${this.notificationUrl}`)
+    this.axiosInstance.delete(`${BASE_URL}/enrollments/${encodeURIComponent(options.userId)}/all${this.notificationUrl}`)
       .then((httpResponse) => {
         callback(httpResponse.data);
       }).catch((error) => {
@@ -819,7 +819,7 @@ function VoiceIt3(apk, tok, baseUrl) {
         callback({ status: 400, responseCode: 'FAIL', message: 'secondsToTimeout must be a numeric value' });
       }
     } else if (options.secondsToTimeout === undefined) {
-      this.axiosInstance.post(`${BASE_URL}/users/${options.userId}/token`)
+      this.axiosInstance.post(`${BASE_URL}/users/${encodeURIComponent(options.userId)}/token`)
         .then((httpResponse) => {
           callback(httpResponse.data);
         }).catch((error) => {
@@ -829,7 +829,7 @@ function VoiceIt3(apk, tok, baseUrl) {
             throw error;
         });
     } else {
-      this.axiosInstance.post(`${BASE_URL}/users/${options.userId}/token?timeOut=${options.secondsToTimeout}`)
+      this.axiosInstance.post(`${BASE_URL}/users/${encodeURIComponent(options.userId)}/token?timeOut=${options.secondsToTimeout}`)
         .then((httpResponse) => {
           callback(httpResponse.data);
         }).catch((error) => {
@@ -845,7 +845,7 @@ function VoiceIt3(apk, tok, baseUrl) {
     if (options.userId === undefined) {
       callback({ status: 400, responseCode: 'FAIL', message: 'Missing userId argument' });
     }
-    this.axiosInstance.post(`${BASE_URL}/users/${options.userId}/expireTokens`)
+    this.axiosInstance.post(`${BASE_URL}/users/${encodeURIComponent(options.userId)}/expireTokens`)
       .then((httpResponse) => {
         callback(httpResponse.data);
       }).catch((error) => {
