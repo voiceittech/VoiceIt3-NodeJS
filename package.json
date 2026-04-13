@@ -1,6 +1,6 @@
 {
   "name": "@voiceittech/voiceit3-nodejs",
-  "version": "3.0.5",
+  "version": "3.0.6",
   "description": "VoiceIt's API 3.0 Face + Voice Verification/Identification Node Wrapper",
   "main": "index.js",
   "scripts": {
@@ -27,11 +27,15 @@
   },
   "homepage": "https://github.com/voiceittech/voiceit3-nodejs#readme",
   "dependencies": {
-    "axios": "^1.13.5",
+    "axios": "^1.15.0",
     "form-data": "^4.0.4"
   },
   "devDependencies": {
     "mocha": "11.7.5"
+  },
+  "overrides": {
+    "diff": "^8.0.3",
+    "serialize-javascript": "^7.0.5"
   },
   "publishConfig": {
     "registry": "https://npm.pkg.github.com"
