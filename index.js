@@ -52,7 +52,7 @@ function VoiceIt3(apk, tok, baseUrl) {
         if (error.response && error.response.data)
           callback(error.response.data);
         else
-          throw error;
+          callback({ status: 0, responseCode: 'FAIL', message: error.message });
       });
   };
 
@@ -64,7 +64,7 @@ function VoiceIt3(apk, tok, baseUrl) {
         if (error.response && error.response.data)
           callback(error.response.data);
         else
-          throw error;
+          callback({ status: 0, responseCode: 'FAIL', message: error.message });
       });
   };
 
@@ -76,7 +76,7 @@ function VoiceIt3(apk, tok, baseUrl) {
         if (error.response && error.response.data)
           callback(error.response.data);
         else
-          throw error;
+          callback({ status: 0, responseCode: 'FAIL', message: error.message });
       });
   };
 
@@ -96,7 +96,7 @@ function VoiceIt3(apk, tok, baseUrl) {
       if (error.response && error.response.data)
         callback(error.response.data);
       else
-        throw error;
+        callback({ status: 0, responseCode: 'FAIL', message: error.message });
     });
   };
 
@@ -116,7 +116,7 @@ function VoiceIt3(apk, tok, baseUrl) {
       if (error.response && error.response.data)
         callback(error.response.data);
       else
-        throw error;
+        callback({ status: 0, responseCode: 'FAIL', message: error.message });
     });
   };
 
@@ -129,7 +129,7 @@ function VoiceIt3(apk, tok, baseUrl) {
         if (error.response && error.response.data)
           callback(error.response.data);
         else
-          throw error;
+          callback({ status: 0, responseCode: 'FAIL', message: error.message });
       });
   };
 
@@ -143,7 +143,7 @@ function VoiceIt3(apk, tok, baseUrl) {
         if (error.response && error.response.data)
           callback(error.response.data);
         else
-          throw error;
+          callback({ status: 0, responseCode: 'FAIL', message: error.message });
       });
   };
 
@@ -156,7 +156,7 @@ function VoiceIt3(apk, tok, baseUrl) {
         if (error.response && error.response.data)
           callback(error.response.data);
         else
-          throw error;
+          callback({ status: 0, responseCode: 'FAIL', message: error.message });
       });
   };
 
@@ -168,7 +168,7 @@ function VoiceIt3(apk, tok, baseUrl) {
         if (error.response && error.response.data)
           callback(error.response.data);
         else
-          throw error;
+          callback({ status: 0, responseCode: 'FAIL', message: error.message });
       });
   };
 
@@ -180,7 +180,7 @@ function VoiceIt3(apk, tok, baseUrl) {
         if (error.response && error.response.data)
           callback(error.response.data);
         else
-          throw error;
+          callback({ status: 0, responseCode: 'FAIL', message: error.message });
       });
   };
 
@@ -194,7 +194,7 @@ function VoiceIt3(apk, tok, baseUrl) {
         if (error.response && error.response.data)
           callback(error.response.data);
         else
-          throw error;
+          callback({ status: 0, responseCode: 'FAIL', message: error.message });
       });
   };
 
@@ -206,7 +206,7 @@ function VoiceIt3(apk, tok, baseUrl) {
         if (error.response && error.response.data)
           callback(error.response.data);
         else
-          throw error;
+          callback({ status: 0, responseCode: 'FAIL', message: error.message });
       });
   };
 
@@ -218,7 +218,7 @@ function VoiceIt3(apk, tok, baseUrl) {
         if (error.response && error.response.data)
           callback(error.response.data);
         else
-          throw error;
+          callback({ status: 0, responseCode: 'FAIL', message: error.message });
       });
   };
 
@@ -234,7 +234,7 @@ function VoiceIt3(apk, tok, baseUrl) {
       if (error.response && error.response.data)
         callback(error.response.data);
       else
-        throw error;
+        callback({ status: 0, responseCode: 'FAIL', message: error.message });
     });
   };
 
@@ -251,7 +251,7 @@ function VoiceIt3(apk, tok, baseUrl) {
       if (error.response && error.response.data)
         callback(error.response.data);
       else
-        throw error;
+        callback({ status: 0, responseCode: 'FAIL', message: error.message });
     });
   };
 
@@ -267,7 +267,7 @@ function VoiceIt3(apk, tok, baseUrl) {
       if (error.response && error.response.data)
         callback(error.response.data);
       else
-        throw error;
+        callback({ status: 0, responseCode: 'FAIL', message: error.message });
     });
   };
 
@@ -279,7 +279,7 @@ function VoiceIt3(apk, tok, baseUrl) {
         if (error.response && error.response.data)
           callback(error.response.data);
         else
-          throw error;
+          callback({ status: 0, responseCode: 'FAIL', message: error.message });
       });
   };
 
@@ -293,7 +293,7 @@ function VoiceIt3(apk, tok, baseUrl) {
         if (error.response && error.response.data)
           callback(error.response.data);
         else
-          throw error;
+          callback({ status: 0, responseCode: 'FAIL', message: error.message });
       });
   };
 
@@ -305,7 +305,7 @@ function VoiceIt3(apk, tok, baseUrl) {
         if (error.response && error.response.data)
           callback(error.response.data);
         else
-          throw error;
+          callback({ status: 0, responseCode: 'FAIL', message: error.message });
       });
   };
 
@@ -317,7 +317,7 @@ function VoiceIt3(apk, tok, baseUrl) {
         if (error.response && error.response.data)
           callback(error.response.data);
         else
-          throw error;
+          callback({ status: 0, responseCode: 'FAIL', message: error.message });
       });
   };
 
@@ -329,7 +329,7 @@ function VoiceIt3(apk, tok, baseUrl) {
         if (error.response && error.response.data)
           callback(error.response.data);
         else
-          throw error;
+          callback({ status: 0, responseCode: 'FAIL', message: error.message });
       });
   };
 
@@ -355,7 +355,7 @@ function VoiceIt3(apk, tok, baseUrl) {
       if (error.response && error.response.data)
         callback(error.response.data);
       else
-        throw error;
+        callback({ status: 0, responseCode: 'FAIL', message: error.message });
     });
   };
 
@@ -374,7 +374,7 @@ function VoiceIt3(apk, tok, baseUrl) {
       if (error.response && error.response.data)
         callback(error.response.data);
       else
-        throw error;
+        callback({ status: 0, responseCode: 'FAIL', message: error.message });
     });
   };
 
@@ -397,7 +397,7 @@ function VoiceIt3(apk, tok, baseUrl) {
       if (error.response && error.response.data)
         callback(error.response.data);
       else
-        throw error;
+        callback({ status: 0, responseCode: 'FAIL', message: error.message });
     });
   };
 
@@ -414,7 +414,7 @@ function VoiceIt3(apk, tok, baseUrl) {
       if (error.response && error.response.data)
         callback(error.response.data);
       else
-        throw error;
+        callback({ status: 0, responseCode: 'FAIL', message: error.message });
     });
   };
 
@@ -437,7 +437,7 @@ function VoiceIt3(apk, tok, baseUrl) {
       if (error.response && error.response.data)
         callback(error.response.data);
       else
-        throw error;
+        callback({ status: 0, responseCode: 'FAIL', message: error.message });
     });
   };
 
@@ -464,7 +464,7 @@ function VoiceIt3(apk, tok, baseUrl) {
       if (error.response && error.response.data)
         callback(error.response.data);
       else
-        throw error;
+        callback({ status: 0, responseCode: 'FAIL', message: error.message });
     });
   };
 
@@ -483,7 +483,7 @@ function VoiceIt3(apk, tok, baseUrl) {
       if (error.response && error.response.data)
         callback(error.response.data);
       else
-        throw error;
+        callback({ status: 0, responseCode: 'FAIL', message: error.message });
     });
   };
 
@@ -495,7 +495,7 @@ function VoiceIt3(apk, tok, baseUrl) {
         if (error.response && error.response.data)
           callback(error.response.data);
         else
-          throw error;
+          callback({ status: 0, responseCode: 'FAIL', message: error.message });
       });
   };
 
@@ -522,7 +522,7 @@ function VoiceIt3(apk, tok, baseUrl) {
       if (error.response && error.response.data)
         callback(error.response.data);
       else
-        throw error;
+        callback({ status: 0, responseCode: 'FAIL', message: error.message });
     });
   };
 
@@ -541,7 +541,7 @@ function VoiceIt3(apk, tok, baseUrl) {
       if (error.response && error.response.data)
         callback(error.response.data);
       else
-        throw error;
+        callback({ status: 0, responseCode: 'FAIL', message: error.message });
     });
   };
 
@@ -566,7 +566,7 @@ function VoiceIt3(apk, tok, baseUrl) {
       if (error.response && error.response.data)
         callback(error.response.data);
       else
-        throw error;
+        callback({ status: 0, responseCode: 'FAIL', message: error.message });
     });
   };
 
@@ -583,7 +583,7 @@ function VoiceIt3(apk, tok, baseUrl) {
       if (error.response && error.response.data)
         callback(error.response.data);
       else
-        throw error;
+        callback({ status: 0, responseCode: 'FAIL', message: error.message });
     });
   };
 
@@ -606,7 +606,7 @@ function VoiceIt3(apk, tok, baseUrl) {
       if (error.response && error.response.data)
         callback(error.response.data);
       else
-        throw error;
+        callback({ status: 0, responseCode: 'FAIL', message: error.message });
     });
   };
 
@@ -633,7 +633,7 @@ function VoiceIt3(apk, tok, baseUrl) {
       if (error.response && error.response.data)
         callback(error.response.data);
       else
-        throw error;
+        callback({ status: 0, responseCode: 'FAIL', message: error.message });
     });
   };
 
@@ -652,7 +652,7 @@ function VoiceIt3(apk, tok, baseUrl) {
       if (error.response && error.response.data)
         callback(error.response.data);
       else
-        throw error;
+        callback({ status: 0, responseCode: 'FAIL', message: error.message });
     });
   };
 
@@ -679,7 +679,7 @@ function VoiceIt3(apk, tok, baseUrl) {
       if (error.response && error.response.data)
         callback(error.response.data);
       else
-        throw error;
+        callback({ status: 0, responseCode: 'FAIL', message: error.message });
     });
   };
 
@@ -698,7 +698,7 @@ function VoiceIt3(apk, tok, baseUrl) {
       if (error.response && error.response.data)
         callback(error.response.data);
       else
-        throw error;
+        callback({ status: 0, responseCode: 'FAIL', message: error.message });
     });
   };
 
@@ -721,7 +721,7 @@ function VoiceIt3(apk, tok, baseUrl) {
       if (error.response && error.response.data)
         callback(error.response.data);
       else
-        throw error;
+        callback({ status: 0, responseCode: 'FAIL', message: error.message });
     });
   };
 
@@ -738,7 +738,7 @@ function VoiceIt3(apk, tok, baseUrl) {
       if (error.response && error.response.data)
         callback(error.response.data);
       else
-        throw error;
+        callback({ status: 0, responseCode: 'FAIL', message: error.message });
     });
   };
 
@@ -759,7 +759,7 @@ function VoiceIt3(apk, tok, baseUrl) {
       if (error.response && error.response.data)
         callback(error.response.data);
       else
-        throw error;
+        callback({ status: 0, responseCode: 'FAIL', message: error.message });
     });
   };
 
@@ -784,7 +784,7 @@ function VoiceIt3(apk, tok, baseUrl) {
       if (error.response && error.response.data)
         callback(error.response.data);
       else
-        throw error;
+        callback({ status: 0, responseCode: 'FAIL', message: error.message });
     });
   };
 
@@ -803,7 +803,7 @@ function VoiceIt3(apk, tok, baseUrl) {
       if (error.response && error.response.data)
         callback(error.response.data);
       else
-        throw error;
+        callback({ status: 0, responseCode: 'FAIL', message: error.message });
     });
   };
 
@@ -826,7 +826,7 @@ function VoiceIt3(apk, tok, baseUrl) {
         if (error.response && error.response.data)
           callback(error.response.data);
         else
-          throw error;
+          callback({ status: 0, responseCode: 'FAIL', message: error.message });
       });
   };
 
@@ -841,7 +841,7 @@ function VoiceIt3(apk, tok, baseUrl) {
         if (error.response && error.response.data)
           callback(error.response.data);
         else
-          throw error;
+          callback({ status: 0, responseCode: 'FAIL', message: error.message });
       });
   };
 }
