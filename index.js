@@ -4,8 +4,6 @@ const fs = require('fs');
 const querystring = require('querystring');
 const pckg = require('./package.json');
 
-let BASE_URL = 'https://api.voiceit.io';
-
 function checkFileExists(filePath, callback) {
   if (!fs.existsSync(filePath)) {
     callback(Error(`File Path ${filePath} Does Not Exist`));
@@ -15,9 +13,7 @@ function checkFileExists(filePath, callback) {
 }
 
 function VoiceIt3(apk, tok, baseUrl) {
-  if (baseUrl !== undefined) {
-    BASE_URL = baseUrl;
-  }
+  this.baseUrl = baseUrl || 'https://api.voiceit.io';
 
   this.axiosInstance = axios.create({
     auth: {
@@ -28,6 +24,7 @@ function VoiceIt3(apk, tok, baseUrl) {
       platformId: '31',
       platformVersion: pckg.version,
     },
+    timeout: 30000,
     maxContentLength: Infinity,
     maxBodyLength: Infinity,
   });
@@ -48,7 +45,7 @@ function VoiceIt3(apk, tok, baseUrl) {
   /* User API Calls */
 
   this.getAllUsers = (callback) => {
-    this.axiosInstance.get(`${BASE_URL}/users${this.notificationUrl}`)
+    this.axiosInstance.get(`${this.baseUrl}/users${this.notificationUrl}`)
       .then((httpResponse) => {
         callback(httpResponse.data);
       }).catch((error) => {
@@ -60,7 +57,7 @@ function VoiceIt3(apk, tok, baseUrl) {
   };
 
   this.getPhrases = (options, callback) => {
-    this.axiosInstance.get(`${BASE_URL}/phrases/${encodeURIComponent(options.contentLanguage)}${this.notificationUrl}`)
+    this.axiosInstance.get(`${this.baseUrl}/phrases/${encodeURIComponent(options.contentLanguage)}${this.notificationUrl}`)
       .then((httpResponse) => {
         callback(httpResponse.data);
       }).catch((error) => {
@@ -72,7 +69,7 @@ function VoiceIt3(apk, tok, baseUrl) {
   };
 
   this.createUser = (callback) => {
-    this.axiosInstance.post(`${BASE_URL}/users${this.notificationUrl}`)
+    this.axiosInstance.post(`${this.baseUrl}/users${this.notificationUrl}`)
       .then((httpResponse) => {
         callback(httpResponse.data);
       }).catch((error) => {
@@ -91,7 +88,7 @@ function VoiceIt3(apk, tok, baseUrl) {
     form.append('email', options.email || '');
     form.append('password', options.password || '');
 
-    this.axiosInstance.post(`${BASE_URL}/subaccount/unmanaged${this.notificationUrl}`, form, {
+    this.axiosInstance.post(`${this.baseUrl}/subaccount/unmanaged${this.notificationUrl}`, form, {
       headers: form.getHeaders(),
     }).then((httpResponse) => {
       callback(httpResponse.data);
@@ -111,7 +108,7 @@ function VoiceIt3(apk, tok, baseUrl) {
     form.append('email', options.email || '');
     form.append('password', options.password || '');
 
-    this.axiosInstance.post(`${BASE_URL}/subaccount/managed${this.notificationUrl}`, form, {
+    this.axiosInstance.post(`${this.baseUrl}/subaccount/managed${this.notificationUrl}`, form, {
       headers: form.getHeaders(),
     }).then((httpResponse) => {
       callback(httpResponse.data);
@@ -125,7 +122,7 @@ function VoiceIt3(apk, tok, baseUrl) {
 
 
   this.regenerateSubAccountAPIToken = (options, callback) => {
-    this.axiosInstance.post(`${BASE_URL}/subaccount/${encodeURIComponent(options.subAccountAPIKey)}${this.notificationUrl}`)
+    this.axiosInstance.post(`${this.baseUrl}/subaccount/${encodeURIComponent(options.subAccountAPIKey)}${this.notificationUrl}`)
       .then((httpResponse) => {
         callback(httpResponse.data);
       }).catch((error) => {
@@ -139,7 +136,7 @@ function VoiceIt3(apk, tok, baseUrl) {
   //TODO: is it ok to name the property subAccountAPIKey to be consistent with the other wrappers
   // or should it be userId? 
   this.deleteSubAccount = (options, callback) => {
-    this.axiosInstance.delete(`${BASE_URL}/subaccount/${encodeURIComponent(options.subAccountAPIKey)}${this.notificationUrl}`)
+    this.axiosInstance.delete(`${this.baseUrl}/subaccount/${encodeURIComponent(options.subAccountAPIKey)}${this.notificationUrl}`)
       .then((httpResponse) => {
         callback(httpResponse.data);
       }).catch((error) => {
@@ -152,7 +149,7 @@ function VoiceIt3(apk, tok, baseUrl) {
 
 
   this.checkUserExists = (options, callback) => {
-    this.axiosInstance.get(`${BASE_URL}/users/${encodeURIComponent(options.userId)}${this.notificationUrl}`)
+    this.axiosInstance.get(`${this.baseUrl}/users/${encodeURIComponent(options.userId)}${this.notificationUrl}`)
       .then((httpResponse) => {
         callback(httpResponse.data);
       }).catch((error) => {
@@ -164,7 +161,7 @@ function VoiceIt3(apk, tok, baseUrl) {
   };
 
   this.deleteUser = (options, callback) => {
-    this.axiosInstance.delete(`${BASE_URL}/users/${encodeURIComponent(options.userId)}${this.notificationUrl}`)
+    this.axiosInstance.delete(`${this.baseUrl}/users/${encodeURIComponent(options.userId)}${this.notificationUrl}`)
       .then((httpResponse) => {
         callback(httpResponse.data);
       }).catch((error) => {
@@ -176,7 +173,7 @@ function VoiceIt3(apk, tok, baseUrl) {
   };
 
   this.getGroupsForUser = (options, callback) => {
-    this.axiosInstance.get(`${BASE_URL}/users/${encodeURIComponent(options.userId)}/groups${this.notificationUrl}`)
+    this.axiosInstance.get(`${this.baseUrl}/users/${encodeURIComponent(options.userId)}/groups${this.notificationUrl}`)
       .then((httpResponse) => {
         callback(httpResponse.data);
       }).catch((error) => {
@@ -190,7 +187,7 @@ function VoiceIt3(apk, tok, baseUrl) {
   /* Group API Calls */
 
   this.getAllGroups = (callback) => {
-    this.axiosInstance.get(`${BASE_URL}/groups${this.notificationUrl}`)
+    this.axiosInstance.get(`${this.baseUrl}/groups${this.notificationUrl}`)
       .then((httpResponse) => {
         callback(httpResponse.data);
       }).catch((error) => {
@@ -202,7 +199,7 @@ function VoiceIt3(apk, tok, baseUrl) {
   };
 
   this.getGroup = (options, callback) => {
-    this.axiosInstance.get(`${BASE_URL}/groups/${encodeURIComponent(options.groupId)}${this.notificationUrl}`)
+    this.axiosInstance.get(`${this.baseUrl}/groups/${encodeURIComponent(options.groupId)}${this.notificationUrl}`)
       .then((httpResponse) => {
         callback(httpResponse.data);
       }).catch((error) => {
@@ -214,7 +211,7 @@ function VoiceIt3(apk, tok, baseUrl) {
   };
 
   this.checkGroupExists = (options, callback) => {
-    this.axiosInstance.get(`${BASE_URL}/groups/${encodeURIComponent(options.groupId)}/exists${this.notificationUrl}`)
+    this.axiosInstance.get(`${this.baseUrl}/groups/${encodeURIComponent(options.groupId)}/exists${this.notificationUrl}`)
       .then((httpResponse) => {
         callback(httpResponse.data);
       }).catch((error) => {
@@ -229,7 +226,7 @@ function VoiceIt3(apk, tok, baseUrl) {
     const form = new FormData();
     form.append('description', (options.description != null) ? options.description : '');
 
-    this.axiosInstance.post(`${BASE_URL}/groups${this.notificationUrl}`, form, {
+    this.axiosInstance.post(`${this.baseUrl}/groups${this.notificationUrl}`, form, {
       headers: form.getHeaders(),
     }).then((httpResponse) => {
       callback(httpResponse.data);
@@ -246,7 +243,7 @@ function VoiceIt3(apk, tok, baseUrl) {
     form.append('userId', options.userId);
     form.append('groupId', options.groupId);
 
-    this.axiosInstance.put(`${BASE_URL}/groups/addUser${this.notificationUrl}`, form, {
+    this.axiosInstance.put(`${this.baseUrl}/groups/addUser${this.notificationUrl}`, form, {
       headers: form.getHeaders(),
     }).then((httpResponse) => {
       callback(httpResponse.data);
@@ -259,7 +256,7 @@ function VoiceIt3(apk, tok, baseUrl) {
   };
 
   this.removeUserFromGroup = (options, callback) => {
-    this.axiosInstance.delete(`${BASE_URL}/groups/removeUser${this.notificationUrl}`, {
+    this.axiosInstance.delete(`${this.baseUrl}/groups/removeUser${this.notificationUrl}`, {
       params: {
         userId: options.userId,
         groupId: options.groupId,
@@ -275,7 +272,7 @@ function VoiceIt3(apk, tok, baseUrl) {
   };
 
   this.deleteGroup = (options, callback) => {
-    this.axiosInstance.delete(`${BASE_URL}/groups/${encodeURIComponent(options.groupId)}${this.notificationUrl}`)
+    this.axiosInstance.delete(`${this.baseUrl}/groups/${encodeURIComponent(options.groupId)}${this.notificationUrl}`)
       .then((httpResponse) => {
         callback(httpResponse.data);
       }).catch((error) => {
@@ -289,7 +286,7 @@ function VoiceIt3(apk, tok, baseUrl) {
   /* Enrollment API Calls */
 
   this.getAllEnrollmentsForUser = (options, callback) => {
-    this.axiosInstance.get(`${BASE_URL}/enrollments/${encodeURIComponent(options.userId)}${this.notificationUrl}`)
+    this.axiosInstance.get(`${this.baseUrl}/enrollments/${encodeURIComponent(options.userId)}${this.notificationUrl}`)
       .then((httpResponse) => {
         callback(httpResponse.data);
       }).catch((error) => {
@@ -301,7 +298,7 @@ function VoiceIt3(apk, tok, baseUrl) {
   };
 
   this.getAllVoiceEnrollments = (options, callback) => {
-    this.axiosInstance.get(`${BASE_URL}/enrollments/voice/${encodeURIComponent(options.userId)}${this.notificationUrl}`)
+    this.axiosInstance.get(`${this.baseUrl}/enrollments/voice/${encodeURIComponent(options.userId)}${this.notificationUrl}`)
       .then((httpResponse) => {
         callback(httpResponse.data);
       }).catch((error) => {
@@ -313,7 +310,7 @@ function VoiceIt3(apk, tok, baseUrl) {
   };
 
   this.getAllFaceEnrollments = (options, callback) => {
-    this.axiosInstance.get(`${BASE_URL}/enrollments/face/${encodeURIComponent(options.userId)}${this.notificationUrl}`)
+    this.axiosInstance.get(`${this.baseUrl}/enrollments/face/${encodeURIComponent(options.userId)}${this.notificationUrl}`)
       .then((httpResponse) => {
         callback(httpResponse.data);
       }).catch((error) => {
@@ -325,7 +322,7 @@ function VoiceIt3(apk, tok, baseUrl) {
   };
 
   this.getAllVideoEnrollments = (options, callback) => {
-    this.axiosInstance.get(`${BASE_URL}/enrollments/video/${encodeURIComponent(options.userId)}${this.notificationUrl}`)
+    this.axiosInstance.get(`${this.baseUrl}/enrollments/video/${encodeURIComponent(options.userId)}${this.notificationUrl}`)
       .then((httpResponse) => {
         callback(httpResponse.data);
       }).catch((error) => {
@@ -350,7 +347,7 @@ function VoiceIt3(apk, tok, baseUrl) {
     });
     
 
-    this.axiosInstance.post(`${BASE_URL}/enrollments/voice${this.notificationUrl}`, form, {
+    this.axiosInstance.post(`${this.baseUrl}/enrollments/voice${this.notificationUrl}`, form, {
       headers: form.getHeaders(),
     }).then((httpResponse) => {
       callback(httpResponse.data);
@@ -369,7 +366,7 @@ function VoiceIt3(apk, tok, baseUrl) {
     form.append('phrase', options.phrase ? options.phrase : '');
     form.append('fileUrl', options.audioFileURL);
 
-    this.axiosInstance.post(`${BASE_URL}/enrollments/voice/byUrl${this.notificationUrl}`, form, {
+    this.axiosInstance.post(`${this.baseUrl}/enrollments/voice/byUrl${this.notificationUrl}`, form, {
       headers: form.getHeaders(),
     }).then((httpResponse) => {
       callback(httpResponse.data);
@@ -392,7 +389,7 @@ function VoiceIt3(apk, tok, baseUrl) {
 
     const reqHeaders = form.getHeaders();
 
-    this.axiosInstance.post(`${BASE_URL}/enrollments/face${this.notificationUrl}`, form, {
+    this.axiosInstance.post(`${this.baseUrl}/enrollments/face${this.notificationUrl}`, form, {
       headers: reqHeaders,
     }).then((httpResponse) => {
       callback(httpResponse.data);
@@ -409,7 +406,7 @@ function VoiceIt3(apk, tok, baseUrl) {
     form.append('userId', options.userId);
     form.append('fileUrl', options.videoFileURL);
 
-    this.axiosInstance.post(`${BASE_URL}/enrollments/face/byUrl${this.notificationUrl}`, form, {
+    this.axiosInstance.post(`${this.baseUrl}/enrollments/face/byUrl${this.notificationUrl}`, form, {
       headers: form.getHeaders(),
     }).then((httpResponse) => {
       callback(httpResponse.data);
@@ -432,7 +429,7 @@ function VoiceIt3(apk, tok, baseUrl) {
 
     const reqHeaders = form.getHeaders();
 
-    this.axiosInstance.post(`${BASE_URL}/enrollments/face${this.notificationUrl}`, form, {
+    this.axiosInstance.post(`${this.baseUrl}/enrollments/face${this.notificationUrl}`, form, {
       headers: reqHeaders,
     }).then((httpResponse) => {
       callback(httpResponse.data);
@@ -459,7 +456,7 @@ function VoiceIt3(apk, tok, baseUrl) {
 
     const reqHeaders = form.getHeaders();
 
-    this.axiosInstance.post(`${BASE_URL}/enrollments/video${this.notificationUrl}`, form, {
+    this.axiosInstance.post(`${this.baseUrl}/enrollments/video${this.notificationUrl}`, form, {
       headers: reqHeaders,
     }).then((httpResponse) => {
       callback(httpResponse.data);
@@ -478,7 +475,7 @@ function VoiceIt3(apk, tok, baseUrl) {
     form.append('phrase', options.phrase ? options.phrase : '');
     form.append('fileUrl', options.videoFileURL);
 
-    this.axiosInstance.post(`${BASE_URL}/enrollments/video/byUrl${this.notificationUrl}`, form, {
+    this.axiosInstance.post(`${this.baseUrl}/enrollments/video/byUrl${this.notificationUrl}`, form, {
       headers: form.getHeaders(),
     }).then((httpResponse) => {
       callback(httpResponse.data);
@@ -491,7 +488,7 @@ function VoiceIt3(apk, tok, baseUrl) {
   };
 
   this.deleteAllEnrollments = (options, callback) => {
-    this.axiosInstance.delete(`${BASE_URL}/enrollments/${encodeURIComponent(options.userId)}/all${this.notificationUrl}`)
+    this.axiosInstance.delete(`${this.baseUrl}/enrollments/${encodeURIComponent(options.userId)}/all${this.notificationUrl}`)
       .then((httpResponse) => {
         callback(httpResponse.data);
       }).catch((error) => {
@@ -517,7 +514,7 @@ function VoiceIt3(apk, tok, baseUrl) {
       filename: 'recording.wav',
     });
 
-    this.axiosInstance.post(`${BASE_URL}/verification/voice${this.notificationUrl}`, form, {
+    this.axiosInstance.post(`${this.baseUrl}/verification/voice${this.notificationUrl}`, form, {
       headers: form.getHeaders(),
     }).then((httpResponse) => {
       callback(httpResponse.data);
@@ -536,7 +533,7 @@ function VoiceIt3(apk, tok, baseUrl) {
     form.append('phrase', options.phrase ? options.phrase : '');
     form.append('fileUrl', options.audioFileURL);
 
-    this.axiosInstance.post(`${BASE_URL}/verification/voice/byUrl${this.notificationUrl}`, form, {
+    this.axiosInstance.post(`${this.baseUrl}/verification/voice/byUrl${this.notificationUrl}`, form, {
       headers: form.getHeaders(),
     }).then((httpResponse) => {
       callback(httpResponse.data);
@@ -561,7 +558,7 @@ function VoiceIt3(apk, tok, baseUrl) {
 
     const reqHeaders = form.getHeaders();
 
-    this.axiosInstance.post(`${BASE_URL}/verification/face${this.notificationUrl}`, form, {
+    this.axiosInstance.post(`${this.baseUrl}/verification/face${this.notificationUrl}`, form, {
       headers: reqHeaders,
     }).then((httpResponse) => {
       callback(httpResponse.data);
@@ -578,7 +575,7 @@ function VoiceIt3(apk, tok, baseUrl) {
     form.append('userId', options.userId);
     form.append('fileUrl', options.videoFileURL);
 
-    this.axiosInstance.post(`${BASE_URL}/verification/face/byUrl${this.notificationUrl}`, form, {
+    this.axiosInstance.post(`${this.baseUrl}/verification/face/byUrl${this.notificationUrl}`, form, {
       headers: form.getHeaders(),
     }).then((httpResponse) => {
       callback(httpResponse.data);
@@ -601,7 +598,7 @@ function VoiceIt3(apk, tok, baseUrl) {
 
     const reqHeaders = form.getHeaders();
 
-    this.axiosInstance.post(`${BASE_URL}/verification/face${this.notificationUrl}`, form, {
+    this.axiosInstance.post(`${this.baseUrl}/verification/face${this.notificationUrl}`, form, {
       headers: reqHeaders,
     }).then((httpResponse) => {
       callback(httpResponse.data);
@@ -628,7 +625,7 @@ function VoiceIt3(apk, tok, baseUrl) {
 
     const reqHeaders = form.getHeaders();
 
-    this.axiosInstance.post(`${BASE_URL}/verification/video${this.notificationUrl}`, form, {
+    this.axiosInstance.post(`${this.baseUrl}/verification/video${this.notificationUrl}`, form, {
       headers: reqHeaders,
     }).then((httpResponse) => {
       callback(httpResponse.data);
@@ -647,7 +644,7 @@ function VoiceIt3(apk, tok, baseUrl) {
     form.append('phrase', options.phrase ? options.phrase : '');
     form.append('fileUrl', options.videoFileURL);
 
-    this.axiosInstance.post(`${BASE_URL}/verification/video/byUrl${this.notificationUrl}`, form, {
+    this.axiosInstance.post(`${this.baseUrl}/verification/video/byUrl${this.notificationUrl}`, form, {
       headers: form.getHeaders(),
     }).then((httpResponse) => {
       callback(httpResponse.data);
@@ -674,7 +671,7 @@ function VoiceIt3(apk, tok, baseUrl) {
       filename: 'recording.wav',
     });
 
-    this.axiosInstance.post(`${BASE_URL}/identification/voice${this.notificationUrl}`, form, {
+    this.axiosInstance.post(`${this.baseUrl}/identification/voice${this.notificationUrl}`, form, {
       headers: form.getHeaders(),
     }).then((httpResponse) => {
       callback(httpResponse.data);
@@ -693,7 +690,7 @@ function VoiceIt3(apk, tok, baseUrl) {
     form.append('phrase', options.phrase ? options.phrase : '');
     form.append('fileUrl', options.audioFileURL);
 
-    this.axiosInstance.post(`${BASE_URL}/identification/voice/byUrl${this.notificationUrl}`, form, {
+    this.axiosInstance.post(`${this.baseUrl}/identification/voice/byUrl${this.notificationUrl}`, form, {
       headers: form.getHeaders(),
     }).then((httpResponse) => {
       callback(httpResponse.data);
@@ -716,7 +713,7 @@ function VoiceIt3(apk, tok, baseUrl) {
       filename: 'video.mp4',
     });
 
-    this.axiosInstance.post(`${BASE_URL}/identification/face${this.notificationUrl}`, form, {
+    this.axiosInstance.post(`${this.baseUrl}/identification/face${this.notificationUrl}`, form, {
       headers: form.getHeaders(),
     }).then((httpResponse) => {
       callback(httpResponse.data);
@@ -733,7 +730,7 @@ function VoiceIt3(apk, tok, baseUrl) {
     form.append('groupId', options.groupId);
     form.append('fileUrl', options.videoFileURL);
 
-    this.axiosInstance.post(`${BASE_URL}/identification/face/byUrl${this.notificationUrl}`, form, {
+    this.axiosInstance.post(`${this.baseUrl}/identification/face/byUrl${this.notificationUrl}`, form, {
       headers: form.getHeaders(),
     }).then((httpResponse) => {
       callback(httpResponse.data);
@@ -754,7 +751,7 @@ function VoiceIt3(apk, tok, baseUrl) {
     form.append('groupId', options.groupId);
     form.append('photo', fs.createReadStream(options.photoFilePath));
 
-    this.axiosInstance.post(`${BASE_URL}/identification/face${this.notificationUrl}`, form, {
+    this.axiosInstance.post(`${this.baseUrl}/identification/face${this.notificationUrl}`, form, {
       headers: form.getHeaders(),
     }).then((httpResponse) => {
       callback(httpResponse.data);
@@ -779,7 +776,7 @@ function VoiceIt3(apk, tok, baseUrl) {
       filename: 'video.mp4',
     });
 
-    this.axiosInstance.post(`${BASE_URL}/identification/video${this.notificationUrl}`, form, {
+    this.axiosInstance.post(`${this.baseUrl}/identification/video${this.notificationUrl}`, form, {
       headers: form.getHeaders(),
     }).then((httpResponse) => {
       callback(httpResponse.data);
@@ -798,7 +795,7 @@ function VoiceIt3(apk, tok, baseUrl) {
     form.append('phrase', options.phrase ? options.phrase : '');
     form.append('fileUrl', options.videoFileURL);
 
-    this.axiosInstance.post(`${BASE_URL}/identification/video/byUrl${this.notificationUrl}`, form, {
+    this.axiosInstance.post(`${this.baseUrl}/identification/video/byUrl${this.notificationUrl}`, form, {
       headers: form.getHeaders(),
     }).then((httpResponse) => {
       callback(httpResponse.data);
@@ -811,41 +808,33 @@ function VoiceIt3(apk, tok, baseUrl) {
   };
 
   this.createUserToken = (options, callback) => {
-    if (options.userId === undefined || (options.secondsToTimeout !== undefined && typeof options.secondsToTimeout !== 'number')) {
-      if (options.userId === undefined) {
-        callback({ status: 400, responseCode: 'FAIL', message: 'Missing userId argument' });
-      }
-      if (options.secondsToTimeout !== undefined && typeof options.secondsToTimeout !== 'number') {
-        callback({ status: 400, responseCode: 'FAIL', message: 'secondsToTimeout must be a numeric value' });
-      }
-    } else if (options.secondsToTimeout === undefined) {
-      this.axiosInstance.post(`${BASE_URL}/users/${encodeURIComponent(options.userId)}/token`)
-        .then((httpResponse) => {
-          callback(httpResponse.data);
-        }).catch((error) => {
-          if (error.response && error.response.data)
-            callback(error.response.data);
-          else
-            throw error;
-        });
-    } else {
-      this.axiosInstance.post(`${BASE_URL}/users/${encodeURIComponent(options.userId)}/token?timeOut=${options.secondsToTimeout}`)
-        .then((httpResponse) => {
-          callback(httpResponse.data);
-        }).catch((error) => {
-          if (error.response && error.response.data)
-            callback(error.response.data);
-          else
-            throw error;
-        });
+    if (options.userId === undefined) {
+      return callback({ status: 400, responseCode: 'FAIL', message: 'Missing userId argument' });
     }
+    if (options.secondsToTimeout !== undefined && typeof options.secondsToTimeout !== 'number') {
+      return callback({ status: 400, responseCode: 'FAIL', message: 'secondsToTimeout must be a numeric value' });
+    }
+
+    const url = options.secondsToTimeout === undefined
+      ? `${this.baseUrl}/users/${encodeURIComponent(options.userId)}/token`
+      : `${this.baseUrl}/users/${encodeURIComponent(options.userId)}/token?timeOut=${options.secondsToTimeout}`;
+
+    this.axiosInstance.post(url)
+      .then((httpResponse) => {
+        callback(httpResponse.data);
+      }).catch((error) => {
+        if (error.response && error.response.data)
+          callback(error.response.data);
+        else
+          throw error;
+      });
   };
 
   this.expireUserTokens = (options, callback) => {
     if (options.userId === undefined) {
-      callback({ status: 400, responseCode: 'FAIL', message: 'Missing userId argument' });
+      return callback({ status: 400, responseCode: 'FAIL', message: 'Missing userId argument' });
     }
-    this.axiosInstance.post(`${BASE_URL}/users/${encodeURIComponent(options.userId)}/expireTokens`)
+    this.axiosInstance.post(`${this.baseUrl}/users/${encodeURIComponent(options.userId)}/expireTokens`)
       .then((httpResponse) => {
         callback(httpResponse.data);
       }).catch((error) => {
